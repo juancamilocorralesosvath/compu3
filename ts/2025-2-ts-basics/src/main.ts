@@ -1,5 +1,7 @@
 import { juan, studentIds } from './objects/objects'
 import './style.css'
+import { juan as juan2 } from './classes/class-minify'
+import { Student } from './classes/classes'
 //import {name, height} from './ts-basics/ts-basics'
 //import { message } from './ts-basics/ts-basics'
 
@@ -15,12 +17,21 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1>${message}</h1>
   
 `  */
+const studentJuan = new Student(1, "juan");
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
  
     <h1>${studentIds}</h1>
 
     <h1>${JSON.stringify(juan)}</h1>
+
+    <h1>${JSON.stringify(juan2)}</h1>
+
+    <h1>${JSON.stringify(studentJuan.setName= "jo")}</h1>
+
+    <h1>${JSON.stringify(studentJuan.getName)}</h1>
+
+
   
 ` 
 
