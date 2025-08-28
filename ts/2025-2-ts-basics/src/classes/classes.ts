@@ -9,7 +9,9 @@ class Student {
     constructor(public id: number, 
         public name:string, 
         // inversion de dependencias
-        private pokeService: PokeService) {
+        // private pokeService: PokeService
+        private pokeService: httpAdapter
+        ) {
         this.id = id;
         this.name = name;
     }
