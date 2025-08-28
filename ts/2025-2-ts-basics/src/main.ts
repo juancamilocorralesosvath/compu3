@@ -1,9 +1,9 @@
-import { juan, studentIds } from './objects/objects'
+// import { juan, studentIds } from './objects/objects'
 import './style.css'
-import { juan as juan2 } from './classes/class-minify'
-import { Student } from './classes/classes'
+// import { juan as juan2 } from './classes/class-minify'
 //import {name, height} from './ts-basics/ts-basics'
 //import { message } from './ts-basics/ts-basics'
+import { gus } from './classes/classes'
 
 /* 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -17,9 +17,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <h1>${message}</h1>
   
 `  */
-const studentJuan = new Student(1, "juan");
+// const studentJuan = new Student(1, "juan");
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+/* document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
  
     <h1>${studentIds}</h1>
 
@@ -31,8 +31,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
     <h1>${JSON.stringify(studentJuan.getName)}</h1>
 
+  
+`  */
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+ 
+    <h1>${JSON.stringify(gus)}</h1>
+
 
   
 ` 
-
 
