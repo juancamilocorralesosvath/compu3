@@ -1,5 +1,6 @@
-import axios from 'axios'
+
 import { PokeService } from '../api/api-service';
+import { PokeResponse } from '../interfaces/poke-response';
 
 class Student {
     /* id: number;
@@ -43,7 +44,7 @@ class Student {
     }
 
     async getPokemonData(id: number) {
-        return this.pokeService.getPokemon(id)
+        return await this.pokeService.getPokemon<PokeResponse>(id)
     }
     
     
