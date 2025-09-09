@@ -1,0 +1,21 @@
+{
+  "name": "express-mongo",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc && bun run dist/src/index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "5"
+  },
+  "dependencies": {
+    "@types/express": "5.0.3",
+    "@types/mongodb": "^4.0.7",
+    "express": "5.1.0",
+    "mongodb": "6.19.0",
+    "mongoose": "8.18.1"
+  }
+}
