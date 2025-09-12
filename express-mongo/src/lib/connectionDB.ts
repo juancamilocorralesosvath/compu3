@@ -1,3 +1,4 @@
+// corregir este archivo
 import mongoose from "mongoose";
 
 const connectionString = `mongodb://root:password@localhost:27017/ICESI`; // Correct protocol
