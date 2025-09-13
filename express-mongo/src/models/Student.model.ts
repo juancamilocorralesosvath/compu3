@@ -1,5 +1,4 @@
-import { password } from "bun";
-import mongoose, { Collection } from "mongoose";
+import mongoose from "mongoose";
 
 export interface StudentInput{
     name:string;
@@ -9,7 +8,6 @@ export interface StudentInput{
     password: string;
 }
 
-// revisar aqui, el profesor lo cambio
 export interface StudentDocument extends StudentInput,mongoose.Document{}
 
 
@@ -19,6 +17,6 @@ const studentSchema = new mongoose.Schema({
     age: {type: Number, required: true},
     isActive: {type: Boolean, required: true},
     password: {type: String, required: true}
-}, {collection: "students"})
+}, {collection: "Students"})
 
 export const StudentModel = mongoose.model<StudentDocument>("Student", studentSchema)

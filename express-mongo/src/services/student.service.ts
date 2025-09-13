@@ -13,7 +13,9 @@ class StudentService {
 
     async create(studentData:StudentDocument){
         try {
-            const createStudent:StudentDocument = await StudentModel.create(studentData)
+            const studentExists: StudentDocument | null = await this.findByEmail(studentData.email)
+            if(studentExists) return { message: `user ${studentData.email} already exists`}
+            const createStudent: StudentDocument = await StudentModel.create(studentData)
             return createStudent
         } catch (error) {
             throw error

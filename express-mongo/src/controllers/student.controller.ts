@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import { StudentDocument } from '../models/Student.model';
 import { studentService } from "../services/student.service";
-import { message } from '../../../ts/2025-2-ts-basics/src/ts-basics/ts-basics';
 import { securityService } from "../services";
+import { password } from 'bun';
 
 class StudentController {
 
     async create(req: Request, res: Response){
         try {
 
-            req.body.password = 
+            req.body.password = await securityService.encryptPassword(req.body.password)
             const students = await studentService.create(req.body)
             res.json(students)
         } catch (error) {
@@ -23,6 +23,7 @@ class StudentController {
             res.json(students)
         } catch (error) {
             console.log("🚀 ~ StudentController ~ getAll ~ error:", error)   
+            res.json(error)
         }
     }
 
@@ -31,7 +32,8 @@ class StudentController {
             const students = await studentService.findByEmail(req.body.email)
             res.json(students)
         } catch (error) {
-            console.log("🚀 ~ StudentController ~ getAll ~ error:", error)   
+            console.log("🚀 ~ StudentController ~ getAll ~ error:", error)  
+            res.json(error) 
         }
     }
 
@@ -44,8 +46,13 @@ class StudentController {
             const currentPassword = studentExists?.password
 
             if (currentPassword) {
-                const matches = await securityService.comparePassword(req.body.email, studentExists.password)
-                if(!matches) res.status(400).json({message})
+                const matches = await securityService.comparePassword(req.body.password, studentExists.password)
+                if(!matches) res.status(403).json({message: `wrong email or password`})
+                const token = await securityService.generateToken(studentExists.id, studentExists.email, studentExists.isActive)
+                res.status(200).json({
+                    message: `login successful`,
+                    token
+                })
             }
 
         } catch (error) {
