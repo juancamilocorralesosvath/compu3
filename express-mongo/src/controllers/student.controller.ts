@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { StudentDocument } from '../models/Student.model';
+import { StudentDocument, StudentInput, StudentModel } from '../models/Student.model';
 import { studentService } from "../services/student.service";
 import { securityService } from "../services";
 import { password } from 'bun';
+import { Stat } from '../../../2025-2-ts-basics/src/interfaces/poke-response';
 
 class StudentController {
 
@@ -59,6 +60,20 @@ class StudentController {
             res.status(500).json({
                 message: `user or password incorrect`
             })
+        }
+    }
+
+    async updateStudent(req:Request, res: Response){
+        try {
+            const email:string = req.params.email
+            const student: StudentController | null = await studentService.updateStudent(email, req.body as StudentInput)
+            if (student == null){
+                res.status(400).json({message: `user ${email} not found`})
+            }
+            res.json(student)
+        } catch (error) {
+            console.log("🚀 ~ StudentController ~ updateStudent ~ error:", error)
+            res.json(error)          
         }
     }
 }

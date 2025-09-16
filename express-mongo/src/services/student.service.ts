@@ -1,4 +1,4 @@
-import { StudentDocument, StudentModel } from "../models/Student.model";
+import { StudentDocument, StudentModel, StudentInput } from "../models/Student.model";
 
 class StudentService {
     async findAll():Promise<StudentDocument[]>{
@@ -31,6 +31,20 @@ class StudentService {
             throw error
         }
     }
+
+      async updateStudent(email:string, student:StudentInput){
+            try {
+                // qu
+                const updateStudent:StudentDocument | null = await StudentModel.findOneAndUpdate({email}, student, {returnOriginal:false})
+                if (updateStudent) {
+                    updateStudent.password = "";
+                } 
+                return updateStudent;
+            } catch (error) {
+                console.log("🚀 ~ StudentController ~ updateStudent ~ error:", error)
+                throw error           
+            }
+        }
 }
 
 export const studentService = new StudentService()
